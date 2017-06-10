@@ -75,9 +75,9 @@ void fb_drawbmp(uint height,uint width,unsigned char* pdata)
 	for(x=0; x<height; x++)
 		for(y=0; y<width; y++)
 		{
-			cnt = x*(varinfo.xres)+y;		// 图片的像素位置
-			*(p+cnt) = (pdata[a]<<0) | (pdata[a+1]<<8) | (pdata[a+2]<<16);
-			a-=3;
+			cnt = x*(varinfo.xres)+y;		// LCD像素位置
+			cnt1 = (x*width+width-y)*3;			// 图片像素位置,width-y用于解决图像显示左右反了的问题
+			*(p+cnt) = (pdata[cnt1]<<0) | (pdata[cnt1+1]<<8) | (pdata[cnt1+2]<<16);
 		}
 }
 
